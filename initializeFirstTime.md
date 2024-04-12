@@ -19,7 +19,8 @@ Open your terminal and navigate to the directory where you want to create your p
 
 In the same directory, run the following command to install the necessary dependencies:
 
-```yarn add express typescript
+```
+yarn add express typescript
 yarn add --dev @types/node @types/express ts-node-dev
 ```
 
