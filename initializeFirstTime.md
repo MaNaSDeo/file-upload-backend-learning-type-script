@@ -24,7 +24,13 @@ yarn add express typescript
 yarn add --dev @types/node @types/express ts-node-dev
 ```
 
-### Step 3: Configure TypeScript
+### Step 3: Create & Configure TypeScript
+
+Run the following command to create a tsconfig.json file:
+
+```
+npx tsc --init --rootDir src --outDir build --esModuleInterop --lib ES6,dom --module commonjs
+```
 
 Create a tsconfig.json file in the root of your project with the following content:
 
@@ -60,6 +66,13 @@ Open package.json and add the following scripts:
   "build": "tsc -p ."
 }
 ```
+
+Note:
+
+ts-node-dev: `is a development tool that helps improve the development experience when working with TypeScript. It watches your TypeScript files for changes and automatically restarts the application when changes are detected. This eliminates the need to manually stop and restart the development server every time you make changes to your code. i.e. work like` nodemon
+--respawn: `This option tells ts-node-dev to automatically restart the application when changes are detected.`
+--pretty: `This option enables pretty output formatting, making the console logs more readable.`
+--transpile-only: `This option tells ts-node-dev to skip type checking and only transpile the TypeScript code to JavaScript. Type checking can be slow, so skipping it during development can improve performance, but you may miss some type errors.`
 
 ### Step 7: Start the Development Server
 
