@@ -27,7 +27,8 @@ yarn add --dev @types/node @types/express ts-node-dev
 
 Create a tsconfig.json file in the root of your project with the following content:
 
-```{
+```
+{
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -51,7 +52,8 @@ In the src/app.ts file, add the following code to create a basic Express server:
 
 Open package.json and add the following scripts:
 
-```"scripts": {
+```
+"scripts": {
   "start": "node dist/app.js",
   "dev": "ts-node-dev --respawn --pretty src/app.ts",
   "build": "tsc -p ."
