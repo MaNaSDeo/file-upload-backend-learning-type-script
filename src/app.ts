@@ -6,20 +6,27 @@ import express, { Request, Response } from "express";
 import connectDB from "./db/connect";
 
 // error handler
-// import notFoundMiddleware from "./middleware/not-found";
-// import errorHandlerMiddleware from "./middleware/error-handler";
+import notFoundMiddleware from "./middlewares/not-found";
+import errorHandlerMiddleware from "./middlewares/error-handler";
 
 dotenv.config();
 
 const app = express();
 
+// Router
+import productRouter from "./routes/productRoutes";
+
+app.use(express.json());
+
 app.get("/", (req: Request, res: Response) => {
   res.send("<h1>File Upload Starter</h1>");
 });
 
+app.use("/api/v1/products", productRouter);
+
 // middleware
-// app.use(notFoundMiddleware);
-// app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
 
