@@ -1,14 +1,28 @@
 import { StatusCodes } from "http-status-codes";
 import { type Response, type Request } from "express";
 import path from "path";
+import CustomError from "../errors";
 
 const uploadProductImage = async (req: Request, res: Response) => {
+  if (!req.files) {
+    throw new CustomError.BadRequestError("No Files Uploaded");
+  }
+
   if (req.files && req.files.image) {
-    // const productImage = req.files.image;
     const productImage = Array.isArray(req.files.image)
       ? req.files.image[0]
       : req.files.image;
 
+    if (!productImage.mimetype.startsWith("image")) {
+      throw new CustomError.BadRequestError("Please Upload Image");
+    }
+
+    const maxSize = Number(process.env.MAX_SIZE) || 1000000;
+    if (productImage.size > maxSize) {
+      throw new CustomError.BadRequestError(
+        `Please upload image smaller than ${maxSize / 1000}KB`
+      );
+    }
     if (
       productImage &&
       typeof productImage === "object" &&
