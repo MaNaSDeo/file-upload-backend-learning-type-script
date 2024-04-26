@@ -32,6 +32,13 @@ Run the following command to create a tsconfig.json file:
 npx tsc --init --rootDir src --outDir build --esModuleInterop --lib ES6,dom --module commonjs
 ```
 
+`npx tsc:` runs the TypeScript compiler(tsc) using npx, and allows to run binaries from npm packages without installing them gloablly.
+`--rootDir src:` specifies the root directory of the input files. In this case, it's set to `src`, which means that the TypeScript compiler will look for source files in the src directory.
+`--outDir build:` specifies the output directory for the compiled JS files. In this case, the compiled files will be placed in the `build` directory.
+`--esModuleInterop:`  This flag enables interoperability between CommonJS and ES modules. This is useful when we works with a mix of CommonJS and ES modules, allowing us to import and use them together without any issues.
+`--lib ES6,dom:` This option specifies the sets of built-in APIs that should be included in the compilation process. In this case, it includes the ES6 (ECMAScript 2015) library and the DOM (Document Object Model) library. The DOM library is typically used in web development when working with browser APIs.
+`--module commonjs:` --module commonjs: This option specifies the module system used for the compiled JavaScript files. In this case, it's set to commonjs, which is the module system used by Node.js. This means that the compiled files will use the require function to import modules.
+
 Create a tsconfig.json file in the root of your project with the following content:
 
 ```
