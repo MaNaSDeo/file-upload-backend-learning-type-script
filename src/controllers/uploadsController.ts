@@ -3,6 +3,7 @@ import { type Response, type Request } from "express";
 import path from "path";
 import CustomError from "../errors";
 import { v2 as cloudinary } from "cloudinary";
+import fs from "fs";
 
 const uploadProductImageLocal = async (req: Request, res: Response) => {
   if (!req.files) {
@@ -74,6 +75,8 @@ const uploadProductImage = async (req: Request, res: Response) => {
       use_filename: true,
       folder: "file-upload",
     });
+
+    fs.unlinkSync(productImage.tempFilePath);
 
     res.status(StatusCodes.CREATED).json({
       image: {
